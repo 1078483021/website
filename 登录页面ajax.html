@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 2000px;
+            height: 800px;
+            background-color: pink;
+            border: 1px solid rgba(0, 0, 0, 0);
+        }
+
+        .signarea {
+            width: 400px;
+            height: 400px;
+
+            background-color: lavenderblush;
+            margin: auto auto;
+            margin-top: 100px;
+        }
+
+        .sign-text {
+            width: 250px;
+            height: 30px;
+            margin: 40px;
+            background: rgba(255, 255, 255, 5);
+            border-radius: 60px;
+        }
+
+        .sign-btn {
+            width: 100px;
+            margin: 50px;
+            background: rgba(255, 255, 255, 5);
+            border-radius: 60px;
+            background-color: lightsalmon;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1 style="text-align: center;">登录</h1>
+        <form>
+            <div class="signarea">
+                <label></label><input class="sign-text" type="text" name="username" placeholder="会员名/邮箱/手机号"
+                    id="username"><br>
+                <label> </label><input class="sign-text" type="password" name="password" placeholder="请输入登录密码"
+                    id="password"><br>
+                <input class="sign-btn" type="submit" value="登录" id="denglubutton">
+            </div>
+        </form>
+    </div>
+
+</body>
+<script>
+    //获取按钮元素
+    var btn = document.getElementById("btn");
+    //获取用户名 密码文本框
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    //为按钮添加点击事件
+    btn.onclick = function () {
+        //初始化请求对象
+        var xhr = new XMLHttpRequest();
+        //获取用户在文本框内输入的值
+        var namevalue = username.value;
+        var pawvalue = password.value;
+        //拼接请求参数
+        var params = 'username =' + namevalue + '&age=' + pawvalue;
+        //配置ajax对象
+        xhr.open("POST", 'http://localhost:9999/post');
+        //设置参数格式类型
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //发送请求
+        xhr.send(params);
+        //获取服务器响应的数据
+        xhr.onload = function () {
+            console.log(xhr.responseText);
+            if (userName.value == '007' && pawvalue.value == '123456') {
+                alert("登陆成功！");
+            } else {
+                alert("登录失败");
+            }
+        }
+
+    }
+</script>
+
+</html>
