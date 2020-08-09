@@ -25,7 +25,7 @@
         .sign-text {
             width: 250px;
             height: 30px;
-            margin: 40px;
+            margin: 30px;
             background: rgba(255, 255, 255, 5);
             border-radius: 60px;
         }
@@ -38,35 +38,32 @@
             background-color: lightsalmon;
 
         }
-
-        a {
-            color: lightsalmon;
-        }
     </style>
 </head>
 
 <body>
     <div class="box">
-        <h1 style="text-align: center;">登录</h1>
+        <h1 style="text-align: center;">注册</h1>
         <form>
             <div class="signarea">
-                <label></label><input class="sign-text" type="text" placeholder="会员名/邮箱/手机号" name="username"
+                <label></label><input class="sign-text" type="text" placeholder="请输入账号" name="username"
                     id="username"><br>
-                <label> </label><input class="sign-text" type="password" placeholder="请输入登录密码" name="password"
+                <label> </label><input class="sign-text" type="password" placeholder="请输入密码" name="password"
                     id="password"><br>
-                <input class="sign-btn" type="submit" value="登录" id="denglubutton">
-                <a href="注册页面.html">免费注册</a>
+                <label> </label><input class="sign-text" type="password" placeholder="请确认密码" name="repassword"
+                    id="repassword"><br>
+                <input class="sign-btn" type="submit" value="注册" id="signbtn">
             </div>
         </form>
-    </div>
-
 </body>
 <script>
+
     //获取按钮元素
-    var btn = document.getElementById("denglubutton");
+    var btn = document.getElementById("signbtn");
     //获取用户名 密码文本框
     var username = document.getElementById("username");
     var password = document.getElementById("password");
+    var repassword = document.getElementById("repassword");
     //为按钮添加点击事件
     btn.onclick = function () {
         //初始化请求对象
@@ -74,23 +71,25 @@
         //获取用户在文本框内输入的值
         var namevalue = username.value;
         var pawvalue = password.value;
-        //拼接请求参数
-        var params = 'username =' + namevalue + '&age=' + pawvalue;
-        //配置ajax对象
-        xhr.open("POST", 'http://localhost:9999/post');
-        //设置参数格式类型
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        //发送请求
-        xhr.send(params);
-        //获取服务器响应的数据
-        xhr.onload = function () {
-            //请求成功完成时要执行的函数
-            console.log(xhr.responseText);
-            // if (userName.value == '007' && pawvalue.value == '123456') {
-            //     alert("登陆成功！");
-            // } else {
-            //     alert("登录失败");
-            // }
+        var repasvalue = repassword.value;
+        //检查密码是否一致
+        if (pawvalue != repasvalue) {
+            alert("两次输入的密码不一致");
+        } else {
+            //拼接请求参数
+            var params = 'username =' + namevalue + '&age=' + pawvalue;
+            //配置ajax对象
+            xhr.open("POST", 'http://localhost:9999/post');
+            //设置参数格式类型
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //发送请求
+            xhr.send(params);
+            //获取服务器响应的数据
+            xhr.onload = function () {
+                //请求成功完成时要执行的函数
+                console.log(xhr.responseText);
+            }
+            alert("注册成功");
         }
     }
 </script>
