@@ -72,10 +72,14 @@
         //初始化请求对象
         var xhr = new XMLHttpRequest();
         //获取用户在文本框内输入的值
-        var namevalue = username.value;
-        var pawvalue = password.value;
-        //拼接请求参数
-        var params = 'username =' + namevalue + '&age=' + pawvalue;
+        var params = {
+            namevalue = username.value,
+            pawvalue = password.value
+        }
+        // var namevalue = username.value;
+        // var pawvalue = password.value;
+        // //拼接请求参数
+        // var params = 'username =' + namevalue + '&age=' + pawvalue;
         //配置ajax对象
         xhr.open("POST", 'http://localhost:9999/post');
         //设置参数格式类型

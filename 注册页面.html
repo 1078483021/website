@@ -69,15 +69,20 @@
         //初始化请求对象
         var xhr = new XMLHttpRequest();
         //获取用户在文本框内输入的值
-        var namevalue = username.value;
-        var pawvalue = password.value;
-        var repasvalue = repassword.value;
+        // var namevalue = username.value;
+        // var pawvalue = password.value;
+        // var repasvalue = repassword.value;
         //检查密码是否一致
         if (pawvalue != repasvalue) {
             alert("两次输入的密码不一致");
         } else {
             //拼接请求参数
-            var params = 'username =' + namevalue + '&age=' + pawvalue;
+            // var params = 'username =' + namevalue + '&age=' + pawvalue;
+            var params = {
+                namevalue = username.value,
+                pawvalue = password.value,
+                repasvalue = repassword.value
+            }
             //配置ajax对象
             xhr.open("POST", 'http://localhost:9999/post');
             //设置参数格式类型
